@@ -9,21 +9,24 @@ class RestaurantsController < ApplicationController
 	end
 
 	def create
-		Restaurant.create(params["restaurant"].permit(:name, :address))
-	  redirect_to '/restaurants'
+		@restaurant = Restaurant.new(params[:restaurant].permit(:name, :address, :cuisine))
+	    if @restaurant.save
+	      redirect_to '/restaurants'
+      else
+    	  render 'new'
+      end	
 	end
 
 # this method shows us the form so we can make the edit
   def edit
   	@restaurant = Restaurant.find(params[:id])	
-
   end
 
 # this method saves the change to the database
   def update
   	# as above with edit I want to yank from the database the record that I want to update - the first line of code below does this
   	@restaurant = Restaurant.find(params[:id])	
-		@restaurant.update(params[:restaurant].permit(:name, :address))
+		@restaurant.update(params[:restaurant].permit(:name, :address, :cuisine))
 	  redirect_to '/restaurants'
 	end
 
