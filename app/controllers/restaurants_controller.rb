@@ -26,8 +26,11 @@ class RestaurantsController < ApplicationController
   def update
   	# as above with edit I want to yank from the database the record that I want to update - the first line of code below does this
   	@restaurant = Restaurant.find(params[:id])	
-		@restaurant.update(params[:restaurant].permit(:name, :address, :cuisine))
-	  redirect_to '/restaurants'
+		if @restaurant.update(params[:restaurant].permit(:name, :address, :cuisine))
+     redirect_to '/restaurants'
+	  else
+      render 'edit'  
+	  end 
 	end
 
   def destroy

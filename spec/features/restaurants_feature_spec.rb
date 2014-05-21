@@ -23,30 +23,49 @@ describe 'adding a restaurant' do
     end
   end
 
-  context 'with invalid data'
-  it 'generates an error message' do
-    visit '/restaurants/new'
-    fill_in 'Name', with: 'yo sushi'
-    fill_in 'Address', with: '15'
-    fill_in 'Cuisine', with: 'japanese'
-    click_button 'Create Restaurant'
-    expect(page).to have_content 'error'
-    expect(page).to have_button 'Create Restaurant'
-    expect(current_path).to eq '/restaurants'
+  context 'with invalid data' do
+    it 'generates an error message' do
+      visit '/restaurants/new'
+      fill_in 'Name', with: 'yo sushi'
+      fill_in 'Address', with: '15'
+      fill_in 'Cuisine', with: 'japanese'
+      click_button 'Create Restaurant'
+      expect(page).to have_content 'error'
+      expect(page).to have_button 'Create Restaurant'
+      expect(current_path).to eq '/restaurants'
+    end
   end
 end
 
 describe 'editing a restaurant' do
-    before { Restaurant.create(name: 'Hudsons', address: '14 London St, Bath, BA1 5BU', cuisine: 'Steakhouse') }
-  it 'edits a restaurant' do
-    visit '/restaurants'
-    click_link 'Edit Hudsons'
+  context 'with valid data' do
+  
+  before { Restaurant.create(name: 'Hudsons', address: '14 London St, Bath, BA1 5BU', cuisine: 'Steakhouse') }
+    it 'edits a restaurant' do
+      visit '/restaurants'
+      click_link 'Edit Hudsons'
 
-    fill_in 'Name', with: 'Waggamama'
-    click_button 'Update Restaurant'
+      fill_in 'Name', with: 'Waggamama'
+      click_button 'Update Restaurant'
 
-    expect(current_path).to eq '/restaurants'
-    expect(page).to have_content 'Waggamama'
+      expect(current_path).to eq '/restaurants'
+      expect(page).to have_content 'Waggamama'
+    end
+  end
+
+  context 'with invalid data' do
+ 
+  before { Restaurant.create(name: 'Hudsons', address: '14 London St, Bath, BA1 5BU', cuisine: 'Steakhouse') }
+    it 'edits a restaurant' do
+      visit '/restaurants'
+      click_link 'Edit Hudsons'
+
+      fill_in 'Name', with: ' '
+      click_button 'Update Restaurant'
+
+      # expect(current_path).to eq '/restaurants'
+      expect(page).to have_content 'error'
+    end
   end
 end
 
