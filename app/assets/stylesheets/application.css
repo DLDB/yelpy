@@ -13,3 +13,11 @@
  *= require_tree .
  *= require_self
  */
+
+body {
+	font-family: Helvetica, Arial, Sans-serif;
+  background-image: url('coloured_diamond.png');
+  background-repeat: no-repeat;
+  background-size: 100%;
+  /*color: #333*/
+}

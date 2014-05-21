@@ -8,14 +8,19 @@ before { Restaurant.create(name: 'Hudsons', address: '14 London St, Bath, BA1 5B
 		end
 
 	  it 'adds a review to the restaurant details' do
-			visit '/restaurants'
-			click_link 'Review Hudsons'
-			fill_in 'Thoughts', with: "great service and welcoming atmosphere"
-			select '4', from: 'Rating'
-			click_button 'Add Review'
+		leaves_review('great service and welcoming atmosphere', 4)
 
 			expect(page).to have_content 'great service and welcoming atmosphere'
 			expect(current_path).to eq '/restaurants'
 			expect(page).to have_content '1 Review'
 		end
+
+		def leaves_review(thoughts, rating)
+			visit '/restaurants'
+			click_link 'Review Hudsons'
+			fill_in 'Thoughts', with: thoughts
+			select rating.to_s, from: 'Rating'
+			click_button 'Add Review'
+		end
+
 	end
