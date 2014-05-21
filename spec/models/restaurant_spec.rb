@@ -35,5 +35,33 @@ describe Restaurant do
   	expect(restaurant).to have(1).error_on(:address)
   end
 
+end
+
+describe '#average_rating' do
+
+  let(:restaurant) { Restaurant.create(name: 'Hudsons', address: '14 London St, Bath, BA1 5BU', cuisine: 'Steakhouse') }
+
+  context 'it has no reviews' do
+    it "returns n/a" do
+      expect(restaurant.average_rating).to eq 'N/A'
+    end
+  end
+
+  context 'it has one review' do
+    before { restaurant.reviews.create(rating: 3) }
+    it "shows the score of that review" do
+      expect(restaurant.average_rating).to eq 3
+    end
+  end
+
+  context 'several reviews' do
+    before { restaurant.reviews.create(rating: 3) }
+    before { restaurant.reviews.create(rating: 2) }
+    before { restaurant.reviews.create(rating: 4) }
+    before { restaurant.reviews.create(rating: 5) }
+    it 'calculates the average rating' do
+      expect(restaurant.average_rating).to eq 3.5
+    end
+  end
 
 end
