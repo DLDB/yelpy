@@ -31,7 +31,7 @@ describe 'adding a review' do
 
   def leaves_review(thoughts, rating)
     visit '/restaurants'
-    click_link 'Review Hudsons'
+    
     fill_in 'Thoughts', with: thoughts
     select rating.to_s, from: 'Rating'
     click_button 'Add Review'
