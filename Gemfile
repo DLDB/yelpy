@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-
+gem 'mustache-js-rails'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.1.1'
 # Use postgresql as the database for Active Record
@@ -29,6 +29,7 @@ group :development, :test do
   gem	'rspec-rails'
   gem	'capybara'	
   gem 'poltergeist'
+  gem 'database_cleaner'
 end
 
 # Use ActiveModel has_secure_password

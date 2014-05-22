@@ -1,3 +1,9 @@
+<template id='review_template'>
+<li>
+  <strong>{{ rating }}</strong> - {{ thoughts }}
+</li>
+</template>
+
 <% if @restaurants.any? %>
 <div class='restaurants'>
   <% @restaurants.each do |restaurant| %>

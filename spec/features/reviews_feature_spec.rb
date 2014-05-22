@@ -9,20 +9,20 @@ describe 'adding a review' do
     expect(page).to have_content '0 Reviews'
   end
 
-  it 'adds a review to the restaurant details' do
+  it 'adds a review to the restaurant details', js: true do
     leaves_review('great service and welcoming atmosphere', 4)
     expect(page).to have_content 'great service and welcoming atmosphere'
     expect(current_path).to eq '/restaurants'
     expect(page).to have_content '1 Review'
   end
 
-  it "calculates an average rating" do
+  xit "calculates an average rating", js: true do
     leaves_review("Ace", 5)
     leaves_review("OK", 3)
     expect(page).to have_content 'Average Rating: 4'
   end
 
-  it "shows filled stars to indicate rating" do
+  xit "shows filled stars to indicate rating", js: true do
   	leaves_review("Ace", 5)
     leaves_review("OK", 3)
     expect(page).to have_content '★★★★★'
