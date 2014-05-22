@@ -7,9 +7,14 @@ describe Review do
   end
  
 	it 'does not add a rating of less than 1' do
-	    review = Review.new(rating: 0)
-	  	expect(review).to have(1).error_on(:rating) 
-	  end
+	  review = Review.new(rating: 0)
+	  expect(review).to have(1).error_on(:rating) 
+	end
+
+	it 'is mandatory to leave a rating when reviewing a restaurant' do
+		review = Review.new()
+		expect(review).to have(1).error_on(:rating)
+	end
 
 	
 end
