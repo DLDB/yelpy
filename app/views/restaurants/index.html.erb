@@ -1,6 +1,7 @@
 <% if @restaurants.any? %>
-<div class='restaurant'>
+<div class='restaurants'>
   <% @restaurants.each do |restaurant| %>
+      <article class='restaurantCard'>
 	  <h2><%= restaurant.name %></h2>
     <h4><%= restaurant.address %></h4>
     <%= link_to "Edit #{restaurant.name}", edit_restaurant_path(restaurant) %>
@@ -13,10 +14,11 @@
       	  <li><strong> <%= star_rating(review.rating) %></strong> - <%= review.thoughts %></li>
         <% end %>
       </ul>    
+      </article>
 	  <% end %>
-
+      
+      </div>
 	<% else %>
 	  Welcome to Yelpy!
 	<% end %>
    <%= link_to "Add Restaurant", new_restaurant_path %>
-</div>
