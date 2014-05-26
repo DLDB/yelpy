@@ -13,7 +13,7 @@ describe 'adding a review' do
     leaves_review('great service and welcoming atmosphere', 4)
     expect(page).to have_content 'great service and welcoming atmosphere'
     expect(current_path).to eq '/restaurants'
-    expect(page).to have_content '1 Review'
+    expect(page).to have_content '1 review'
   end
 
   xit "calculates an average rating", js: true do
