@@ -10,4 +10,12 @@ class ReviewsController < ApplicationController
     @review = @restaurant.reviews.create!(params[:review].permit(:thoughts, :rating))
     render 'create', content_type: :json
   end
+
+  def destroy
+    restaurant = Restaurant.find(params[:restaurant_id])
+    review = restaurant.reviews.find(params[:id])
+    review.destroy
+    redirect_to('/restaurants')
+  end
+
 end

@@ -1,5 +1,6 @@
 json.thoughts @review.thoughts
 json.star_rating star_rating(@review.rating)
+json.delete link_to "Delete Review", restaurant_review_path(@review.restaurant, @review), method: :delete
 
 json.restaurant do
   json.average_rating number_with_precision(@restaurant.average_rating, precision: 1)

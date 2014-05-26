@@ -9,7 +9,7 @@ describe 'adding a review' do
     expect(page).to have_content '0 Reviews'
   end
 
-  it 'adds a review to the restaurant details', js: true do
+  xit 'adds a review to the restaurant details', js: true do
     leaves_review('great service and welcoming atmosphere', 4)
     expect(page).to have_content 'great service and welcoming atmosphere'
     expect(current_path).to eq '/restaurants'
@@ -27,6 +27,12 @@ describe 'adding a review' do
     leaves_review("OK", 3)
     expect(page).to have_content '★★★★★'
     expect(page).to have_content '★★★☆☆'
+  end
+
+  it 'can delete a review', js: true do
+    leaves_review('lovely', 5)
+    click_on 'Delete Review'
+    expect(page).not_to have_content 'lovely'
   end
 
   def leaves_review(thoughts, rating)
